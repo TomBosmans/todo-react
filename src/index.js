@@ -1,20 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
 import App from './components/App';
-import rootReducer from './reducers';
+import store from './store';
 
-// const persistedState = {
-//   todos: [
-//     { id: '0', text: 'welcome back', completed: false },
-//     { id: '1', text: 'welcome back again', completed: true },
-//   ]
-// }
-// const store = createStore(rootReducer, persistedState);
-
-const store = createStore(rootReducer);
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
 render(
   <Provider store={store}>
