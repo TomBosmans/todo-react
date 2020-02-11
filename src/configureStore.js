@@ -2,11 +2,12 @@ import throttle from 'lodash/throttle';
 import rootReducer from './reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
 import { createStore, applyMiddleware } from 'redux';
 import { loadState, saveState } from './lib/localStorage';
-
+import { fetchTodos } from './api';
 const buildMiddlewares = () => {
-  const middlewares = [thunk];
+  const middlewares = [promise, thunk];
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(logger);
   }
@@ -28,6 +29,11 @@ const configureStore = () => {
     });
   }, 1000));
 
+  store.dispatch({
+    type: 'GET_TODOS',
+    payload: fetchTodos('all')
+  });
+  
   return store;
 };
 
