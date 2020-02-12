@@ -1,18 +1,31 @@
-import { fetchTodos } from '../api';
+import * as api from '../api';
 
 export const getTodos = (filter) => ({
   type: 'GET_TODOS',
-  payload: fetchTodos(filter)
-})
+  payload: api.getTodos(filter),
+});
 
-let nextTodoId = 0
-export const addTodo = (text) => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  text
-})
+export const getTodo = (id) => ({
+  type: 'GET_TODO',
+  payload: api.getTodo(id),
+});
 
-export const toggleTodo = (id) => ({
+export const createTodo = (data) => ({
+  type: 'CREATE_TODO',
+  payload: api.postTodo(data),
+});
+
+export const updateTodo = (id, data) => ({
+  type: 'UPDATE_TODO',
+  payload: api.patchTodo(id, data),
+});
+
+export const destroyTodo = (id) => ({
+  type: 'DESTROY_TODO',
+  payload: api.deleteTodo(id),
+});
+
+export const toggleTodo = (todo) => ({
   type: 'TOGGLE_TODO',
-  id
-})
+  payload: api.patchTodo(todo.id, { completed: !todo.completed }),
+});

@@ -1,37 +1,30 @@
-import throttle from 'lodash/throttle';
 import rootReducer from './reducers';
-import logger from 'redux-logger';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
+
+import loggerMiddleware from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+import promiseMiddleware from 'redux-promise-middleware';
+
 import { createStore, applyMiddleware } from 'redux';
-import { loadState, saveState } from './lib/localStorage';
-import { fetchTodos } from './api';
+import * as api from './api';
+
 const buildMiddlewares = () => {
-  const middlewares = [promise, thunk];
+  const middlewares = [promiseMiddleware, thunkMiddleware];
   if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(logger);
+    middlewares.push(loggerMiddleware);
   }
 
   return middlewares;
-}
+};
 
 const configureStore = () => {
-  const persistedState = loadState();
   const store = createStore(
     rootReducer,
-    persistedState,
     applyMiddleware(...buildMiddlewares())
   );
 
-  store.subscribe(throttle(() => {
-    saveState({
-      todos: store.getState().todos // TODO: id is bugged atm
-    });
-  }, 1000));
-
   store.dispatch({
     type: 'GET_TODOS',
-    payload: fetchTodos('all')
+    payload: api.getTodos('all')
   });
   
   return store;

@@ -20,7 +20,7 @@ const fakeDatabase = {
 const delay = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
-export const fetchTodos = (filter) =>
+export const getTodos = (filter) =>
   delay(500).then(() => {
     switch(filter) {
     case VisibilityFilters.SHOW_ALL:
@@ -32,4 +32,27 @@ export const fetchTodos = (filter) =>
     default:
       throw new Error(`unknown filter ${filter}`);
     }
+  });
+
+export const getTodo = (id) =>
+  delay(500).then(() => {
+    return fakeDatabase.todos.find(todo => todo.id === id);
+  });
+
+export const postTodo = (data) =>
+  delay(500).then(() => {
+    return fakeDatabase.todos = [...fakeDatabase.todos, {...data, id: v4() }];
+  });
+
+export const patchTodo = (id, data) =>
+  delay(500).then(() => {
+    return fakeDatabase.todos.map(todo => {
+      if (todo.id !== id) { return todo; };
+      return { ...todo, ...data };
+    });
+  });
+
+export const deleteTodo = (id) =>
+  delay(500).then(() => {
+    return fakeDatabase.todos.filter(todo => todo.id !== id);
   });
