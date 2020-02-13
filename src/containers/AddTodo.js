@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { createTodo } from '../actions';
 import { useDispatch } from 'react-redux';
 
@@ -15,11 +15,11 @@ export default () => {
   };
 	
   return (
-    <div>
+    <Fragment>
       <form onSubmit={onSubmit}>
         <input ref={node => (input = node)} />
         <button type="submit">Add Todo</button>
       </form>
-    </div>
+    </Fragment>
   );
 }
