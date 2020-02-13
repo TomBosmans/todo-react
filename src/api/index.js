@@ -12,7 +12,7 @@ const fakeDatabase = {
       completed: false
     }, {
       id: v4(),
-      test: "let's go",
+      text: "let's go",
       completed: false
     }]
 };
@@ -41,15 +41,19 @@ export const getTodo = (id) =>
 
 export const postTodo = (data) =>
   delay(500).then(() => {
-    return fakeDatabase.todos = [...fakeDatabase.todos, {...data, id: v4() }];
+    const id = v4();
+    fakeDatabase.todos = [...fakeDatabase.todos, {...data, id: id }];
+    return fakeDatabase.todos.find(todo => todo.id === id);
   });
 
 export const patchTodo = (id, data) =>
   delay(500).then(() => {
-    return fakeDatabase.todos.map(todo => {
+    fakeDatabase.todos = fakeDatabase.todos.map(todo => {
       if (todo.id !== id) { return todo; };
       return { ...todo, ...data };
     });
+
+    return fakeDatabase.todos.find(todo => todo.id === id);
   });
 
 export const deleteTodo = (id) =>

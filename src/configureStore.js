@@ -5,7 +5,6 @@ import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
 
 import { createStore, applyMiddleware } from 'redux';
-import * as api from './api';
 
 const buildMiddlewares = () => {
   const middlewares = [promiseMiddleware, thunkMiddleware];
@@ -21,11 +20,6 @@ const configureStore = () => {
     rootReducer,
     applyMiddleware(...buildMiddlewares())
   );
-
-  store.dispatch({
-    type: 'GET_TODOS',
-    payload: api.getTodos('all')
-  });
   
   return store;
 };
