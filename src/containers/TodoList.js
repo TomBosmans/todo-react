@@ -3,14 +3,13 @@ import React, { useEffect } from 'react';
 import Todo from './Todo';
 
 import { getTodos } from '../actions';
-import { useParams } from "react-router";
+import { useQuery } from "../hooks";
 import { useSelector, useDispatch } from 'react-redux';
-
 
 export default () => {
   const todos = useSelector(state => state.todos).data;
   const dispatch = useDispatch();
-  const { filter } = useParams();
+  const filter = useQuery('filter');
 
   useEffect(()=>{
     dispatch(getTodos(filter || 'all'));
