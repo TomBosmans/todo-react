@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-
-import Todo from './Todo';
-
+import TodoListItem from './TodoListItem';
+import List from '../components/List';
 import { getTodos } from '../actions';
 import { useQuery } from "../hooks";
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,8 +15,8 @@ export default () => {
   }, [filter, dispatch]);
 
   return(
-    <ul>
-      { todos.map(todo => (<Todo key={todo.id} todo={todo} />)) }
-    </ul>
+    <List dense>
+      { todos.map(todo => (<TodoListItem key={todo.id} todo={todo} />)) }
+    </List>
   );
 }

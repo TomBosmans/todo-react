@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Container from '../components/Container';
 
 export default ({ children }) => (
-  <Fragment>
+  <Container maxWidth='sm'>
     {children}
-  </Fragment>
+  </Container>
 );

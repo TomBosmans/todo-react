@@ -1,25 +1,33 @@
-import React, { Fragment } from 'react';
+import React, { useState } from 'react';
 import { createTodo } from '../actions';
 import { useDispatch } from 'react-redux';
+import TextField from '../components/TextField';
+import InputAdornment from '../components/InputAdornment';
+import { AddButton } from '../components/buttons';
+
+const SubmitButton = () => (
+  <InputAdornment position="start">
+    <AddButton type="submit"/>
+  </InputAdornment>
+);
 
 export default () => {
   const dispatch = useDispatch();
+  const [input, setInput] = useState('');
 
-  let input;
   const onSubmit = (event) => {
     event.preventDefault();
-    if (!input.value.trim()) return;
+    if (!input.trim()) return;
 
-    dispatch(createTodo({ text: input.value, completed: false }));
-    input.value = '';    
+    dispatch(createTodo({ text: input, completed: false }));
+    setInput('');
   };
-	
+  
   return (
-    <Fragment>
-      <form onSubmit={onSubmit}>
-        <input ref={node => (input = node)} />
-        <button type="submit">Add Todo</button>
-      </form>
-    </Fragment>
+    <form onSubmit={onSubmit} style={{margin: '10px'}}>
+      <TextField label="New Todo" value={input} fullWidth
+		 InputProps={{ endAdornment: <SubmitButton/>}}
+		 onInput={e => setInput(e.target.value)}/>
+    </form>
   );
 }
