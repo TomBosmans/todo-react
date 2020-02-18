@@ -4,9 +4,10 @@ import List from '../components/List';
 import { getTodos } from '../actions';
 import { useQuery } from "../hooks";
 import { useSelector, useDispatch } from 'react-redux';
+import { selectTodos } from '../selectors';
 
 export default () => {
-  const todos = useSelector(state => state.todos).data;
+  const todos = useSelector(state => selectTodos(state));
   const dispatch = useDispatch();
   const filter = useQuery('filter');
 

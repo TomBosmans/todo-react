@@ -10,6 +10,7 @@ import ListItemSecondaryAction from '../components/ListItemSecondaryAction';
 import Checkbox from '../components/Checkbox';
 import ToggleableMenu from '../components/ToggleableMenu';
 import MenuItem from '../components/MenuItem';
+import ClickAwayListener from '../components/ClickAwayListener';
 
 import EditForm from './TodoEditForm';
 
@@ -25,17 +26,20 @@ export default ({ todo }) => {
     if (!isEditing) dispatch(toggleTodo(todo));
   };
 
-  const ListBody = () => {
-    if (isEditing) return <EditForm todo={todo} afterUpdate={disableEditing} />;
-    return <ListItemText primary={text}/>;
-  };
-  
+  if (isEditing) return (
+    <ClickAwayListener onClickAway={disableEditing}>
+      <div style={{ paddingLeft: '16px', paddingRight: '16px' }}>
+	<EditForm todo={todo} afterUpdate={disableEditing}/>
+      </div>
+    </ClickAwayListener>
+  );
+
   return (
-    <ListItem key={id} dense button onClick={toggle} disableRipple={isEditing}>
+    <ListItem button onClick={toggle} disableRipple={isEditing}>
       <ListItemIcon>
         <Checkbox edge="start" checked={completed} disableRipple/>
       </ListItemIcon>
-      <ListBody />
+      <ListItemText primary={text}/>
       <ListItemSecondaryAction>
 	<ToggleableMenu>
 	  <MenuItem onClick={enableEditing}>Edit</MenuItem>
