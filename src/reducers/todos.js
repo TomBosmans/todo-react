@@ -1,13 +1,13 @@
 import todo from './todo';
 
-export default (state = { data: [] }, action) => {
+export default (state = { data: [], isFetching: true }, action) => {
   switch(action.type) {
   case 'GET_TODOS_PENDING':
-    return { ...state, fetching: true };
+    return { ...state, isFetching: true };
   case 'GET_TODOS_FULFILLED':
-    return { ...state, data: action.payload, fetching: false };
+    return { ...state, data: action.payload, isFetching: false };
   case 'GET_TODOS_REJECTED':
-    return { ...state, fetching: false, error: action.payload };
+    return { ...state, isFetching: false, error: action.payload };
   case 'TOGGLE_TODO_FULFILLED':
   case 'UPDATE_TODO_FULFILLED':
   case 'TOGGLE_TODO_PENDING':
