@@ -1,6 +1,1 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-
-export default({...options}) => (
-  <TextField {...options}/>
-);
+export { default } from '@material-ui/core/TextField';

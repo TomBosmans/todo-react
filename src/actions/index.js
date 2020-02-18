@@ -17,15 +17,24 @@ export const createTodo = (data) => ({
 
 export const updateTodo = (id, data) => ({
   type: 'UPDATE_TODO',
-  payload: api.patchTodo(id, data),
+  payload: {
+    promise: api.patchTodo(id, data),
+    data: { id: id, ...data },
+  }
 });
 
 export const destroyTodo = (id) => ({
   type: 'DESTROY_TODO',
-  payload: api.deleteTodo(id),
+  payload: {
+    promise: api.deleteTodo(id),
+    data: { id: id },
+  }
 });
 
 export const toggleTodo = (todo) => ({
   type: 'TOGGLE_TODO',
-  payload: api.patchTodo(todo.id, { completed: !todo.completed }),
+  payload: {
+    promise: api.patchTodo(todo.id, { completed: !todo.completed }),
+    data: {...todo, completed: !todo.completed }
+  }
 });

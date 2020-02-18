@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { VisibilityFilters } from '../constants';
-import { NavLink } from 'react-router-dom';
-import FilterButton from './FilterButton';
+import FilterButton from './TodoFilterButton';
 import Grid from '../components/Grid';
 
 export default () => (

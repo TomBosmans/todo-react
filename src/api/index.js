@@ -58,5 +58,6 @@ export const patchTodo = (id, data) =>
 
 export const deleteTodo = (id) =>
   delay(500).then(() => {
-    return fakeDatabase.todos.filter(todo => todo.id !== id);
+    fakeDatabase.todos = fakeDatabase.todos.filter(todo => todo.id !== id)
+    return 'success'
   });
