@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { toggleTodo, destroyTodo } from '../actions';
+import { toggleTodo, destroyTodo } from '../../actions';
 
-import ListItem from '../components/ListItem';
-import ListItemText from '../components/ListItemText';
-import ListItemIcon from '../components/ListItemIcon';
-import ListItemSecondaryAction from '../components/ListItemSecondaryAction';
-import Checkbox from '../components/Checkbox';
-import ToggleableMenu from '../components/ToggleableMenu';
-import MenuItem from '../components/MenuItem';
-import ClickAwayListener from '../components/ClickAwayListener';
+import ListItem from '../../components/ListItem';
+import ListItemText from '../../components/ListItemText';
+import ListItemIcon from '../../components/ListItemIcon';
+import ListItemSecondaryAction from '../../components/ListItemSecondaryAction';
+import Checkbox from '../../components/Checkbox';
+import ToggleableMenu from '../../components/ToggleableMenu';
+import MenuItem from '../../components/MenuItem';
+import ClickAwayListener from '../../components/ClickAwayListener';
 
-import EditForm from './TodoEditForm';
+import EditForm from '../TodoListItemEdit';
 
 export default ({ todo }) => {
   const { id, text, completed } = todo;

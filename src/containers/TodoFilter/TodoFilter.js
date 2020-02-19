@@ -1,7 +1,8 @@
 import React from 'react';
-import { VisibilityFilters } from '../constants';
-import FilterButton from './TodoFilterButton';
-import Grid from '../components/Grid';
+import { VisibilityFilters } from '../../constants';
+import Grid from '../../components/Grid';
+import FilterButton from '../TodoFilterButton';
+
 
 export default () => (
   <Grid container direction="row" justify="space-around" alignItems="baseline">

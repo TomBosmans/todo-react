@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateTodo } from '../actions';
-import TextField from '../components/TextField';
-import InputAdornment from '../components/InputAdornment';
-import { SaveButton } from '../components/IconButton';
+
+import { updateTodo } from '../../actions';
+
+import TextField from '../../components/TextField';
+import InputAdornment from '../../components/InputAdornment';
+import { SaveButton } from '../../components/IconButton';
 
 const SubmitButton = () => (
   <InputAdornment position="start">

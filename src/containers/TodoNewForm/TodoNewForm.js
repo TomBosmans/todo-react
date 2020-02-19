@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { createTodo } from '../actions';
 import { useDispatch } from 'react-redux';
-import TextField from '../components/TextField';
-import InputAdornment from '../components/InputAdornment';
-import { AddButton } from '../components/IconButton';
 
-const SubmitButton = () => (
-  <InputAdornment position="start">
-    <AddButton type="submit"/>
-  </InputAdornment>
-);
+import { createTodo } from '../../actions';
+
+import TextField from '../../components/TextField';
+import InputAdornment from '../../components/InputAdornment';
+import { AddButton } from '../../components/IconButton';
 
 export default () => {
   const dispatch = useDispatch();
@@ -22,12 +18,18 @@ export default () => {
     dispatch(createTodo({ text: input, completed: false }));
     setInput('');
   };
+
+  const SubmitButton = () => (
+    <InputAdornment position="start">
+      <AddButton type="submit"/>
+    </InputAdornment>
+  );
   
   return (
     <form onSubmit={onSubmit} style={{margin: '10px'}}>
       <TextField label="New Todo" value={input} fullWidth
 		 InputProps={{ endAdornment: <SubmitButton/>}}
-		 onInput={e => setInput(e.target.value)}/>
+		 onInput={event => setInput(event.target.value)}/>
     </form>
   );
 }
